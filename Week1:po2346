@@ -1,0 +1,29 @@
+
+import java.util.HashMap;
+
+class Solution {
+    public long countBadPairs(int[] nums) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        long goodPairs = 0;
+        long totalPairs = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+
+            int key = nums[i] - i;
+
+            if (map.containsKey(key)) {
+                goodPairs += map.get(key);
+            }
+
+            map.put(key, map.getOrDefault(key, 0) + 1);
+        }
+
+        int n = nums.length;
+
+        totalPairs = (long) n * (n - 1) / 2;
+
+        return totalPairs - goodPairs;
+    }
+}
